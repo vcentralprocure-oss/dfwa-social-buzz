@@ -1,0 +1,10 @@
+{
+  "name": "dfwa-social-buzz",
+  "version": "1.0.0",
+  "description": "DFWA Social Buzz - Arlington's Daily",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build needed'",
+    "start": "npx serve ."
+  }
+}

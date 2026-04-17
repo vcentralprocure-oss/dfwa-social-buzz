@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFWA SOCIAL BUZZ — Arlington's Daily</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f5f5f5;
+        }
+        
+        /* Header */
+        .header {
+            background: #000;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span {
+            color: #ff6b35;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav a:hover {
+            color: #ff6b35;
+        }
+        
+        .nav .primary {
+            color: #ff6b35;
+            font-weight: 600;
+        }
+        
+        .newsletter-btn {
+            background: #ff6b35;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .tagline {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #ccc;
+            max-width: 600px;
+        }
+        
+        /* Main Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #000;
+        }
+        
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .section-header .location {
+            background: #ff6b35;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .view-all {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        /* Article Cards */
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .article-content {
+            padding: 1.25rem;
+        }
+        
+        .article-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ff6b35;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        
+        .article-excerpt {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        /* Local Buzz Section */
+        .buzz-list {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .buzz-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .buzz-item:last-child {
+            border-bottom: none;
+        }
+        
+        .buzz-time {
+            font-size: 0.75rem;
+            color: #999;
+            margin-bottom: 0.25rem;
+        }
+        
+        .buzz-title {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .sidebar-section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-section h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .sidebar-section .location-tag {
+            display: inline-block;
+            background: #666;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+        
+        .sidebar-article {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sidebar-article:last-child {
+            border-bottom: none;
+        }
+        
+        .sidebar-article-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .sidebar-article-meta {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        /* Newsletter Box */
+        .newsletter-box {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .newsletter-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .newsletter-box p {
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #ff6b35;
+        }
+        
+        .footer-section a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding: 2rem 20px 0;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #666;
+            font-size: 0.875rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">DFWA <span>SOCIAL BUZZ</span></div>
+            <nav class="nav">
+                <a href="#" class="primary">Arlington</a>
+                <a href="#">Fort Worth</a>
+                <a href="#">Dallas</a>
+                <a href="#">DFW Guides</a>
+                <a href="#" class="newsletter-btn">Newsletter</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="tagline">Arlington's Daily</div>
+            <h1>The Best Local Spots, Events & Hidden Gems</h1>
+            <p class="hero-subtitle">Your guide to actually living in Arlington — not Dallas-lite, not Fort Worth's little brother. Just pure local.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <main class="main-content">
+            <!-- Eat & Drink Section -->
+            <div class="section-header">
+                <h2>Eat & Drink <span class="location">Arlington</span></h2>
+                <a href="#" class="view-all">View All →</a>
+            </div>
+            <div class="article-grid">
+                <article class="article-card">
+                    <div class="article-image">🍜 Restaurant Photo</div>
+                    <div class="article-content">
+                        <div class="article-category">New Opening</div>
+                        <h3 class="article-title">This New Ramen Spot in Downtown Arlington Is Already Packed</h3>
+                        <p class="article-excerpt">Authentic Tokyo-style ramen has finally arrived, and locals are lining up out the door...</p>
+                    </div>
+                </article>
+                <article class="article-card">
+                    <div class="article-image">☕ Coffee Shop</div>
+                    <div class="article-content">
+                        <div class="article-category">Coffee</div>
+                        <h3 class="article-title">7 Best Coffee Shops for Remote Work in Arlington</h3>
+                        <p class="article-excerpt">From cozy corners to high-speed wifi, these spots are perfect for your work-from-cafe days...</p>
+                    </div>
+                </article>
+                <article class="article-card">
+                    <div class="article-image">🍺 Brewery</div>
+                    <div class="article-content">
+                        <div class="article-category">Drink</div>
+                        <h3 class="article-title">Arlington's Craft Brewery Scene Is Exploding</h3>
+                        <p class="article-excerpt">Three new breweries opened this year. Here's your complete tasting tour guide...</p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Things to Do Section -->
+            <div class="section-header">
+                <h2>Things to Do <span class="location">Arlington</span></h2>
+                <a href="#" class="view-all">View All →</a>
+            </div>
+            <div class="article-grid">
+                <article class="article-card">
+                    <div class="article-image">🎭 Event</div>
+                    <div class="article-content">
+                        <div class="article-category">Weekend Guide</div>
+                        <h3 class="article-title">This Weekend: 12 Things to Do in Arlington</h3>
+                        <p class="article-excerpt">From live music at the Levitt to the new art installation at the library...</p>
+                    </div>
+                </article>
+                <article class="article-card">
+                    <div class="article-image">🎪 Entertainment</div>
+                    <div class="article-content">
+                        <div class="article-category">Family</div>
+                        <h3 class="article-title">Beyond Six Flags: Hidden Family Fun in Arlington</h3>
+                        <p class="article-excerpt">Local parents share their secret spots for kid-friendly adventures...</p>
+                    </div>
+                </article>
+                <article class="article-card">
+                    <div class="article-image">🌳 Park</div>
+                    <div class="article-content">
+                        <div class="article-category">Outdoors</div>
+                        <h3 class="article-title">The Ultimate Guide to Arlington's Best Parks</h3>
+                        <p class="article-excerpt">From River Legacy to Veterans Park, here's where to hike, bike, and relax...</p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Local Buzz Section -->
+            <div class="section-header">
+                <h2>Local Buzz <span class="location">Arlington</span></h2>
+                <a href="#" class="view-all">More News →</a>
+            </div>
+            <div class="buzz-list">
+                <div class="buzz-item">
+                    <div class="buzz-time">2 hours ago</div>
+                    <div class="buzz-title">New apartment complex breaks ground near AT&T Stadium</div>
+                </div>
+                <div class="buzz-item">
+                    <div class="buzz-time">5 hours ago</div>
+                    <div class="buzz-title">Local bakery wins state-wide competition</div>
+                </div>
+                <div class="buzz-item">
+                    <div class="buzz-time">Yesterday</div>
+                    <div class="buzz-title">City council approves new entertainment district plans</div>
+                </div>
+                <div class="buzz-item">
+                    <div class="buzz-time">Yesterday</div>
+                    <div class="buzz-title">Popular food truck announces brick-and-mortar location</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Newsletter -->
+            <div class="newsletter-box">
+                <h3>Get the Daily Buzz</h3>
+                <p>Arlington's best local spots, delivered every morning.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email">
+                    <button type="submit">Join</button>
+                </form>
+            </div>
+
+            <!-- Fort Worth Section -->
+            <div class="sidebar-section">
+                <span class="location-tag">Fort Worth</span>
+                <h3>Latest in Fort Worth</h3>
+                <div class="sidebar-article">
+                    <div class="sidebar-article-title">New Boutique Hotel Opens in Sundance Square</div>
+                    <div class="sidebar-article-meta">2 hours ago</div>
+                </div>
+                <div class="sidebar-article">
+                    <div class="sidebar-article-title">Fort Worth Food Hall Guide</div>
+                    <div class="sidebar-article-meta">Yesterday</div>
+                </div>
+                <div class="sidebar-article">
+                    <div class="sidebar-article-title">Best Margaritas in the Stockyards</div>
+                    <div class="sidebar-article-meta">2 days ago</div>
+                </div>
+            </div>
+
+            <!-- Dallas Section -->
+            <div class="sidebar-section">
+                <span class="location-tag">Dallas</span>
+                <h3>Dallas Highlights</h3>
+                <div class="sidebar-article">
+                    <div class="sidebar-article-title">Deep Ellum's Newest Music Venue</div>
+                    <div class="sidebar-article-meta">4 hours ago</div>
+                </div>
+                <div class="sidebar-article">
+                    <div class="sidebar-article-title">Dallas Date Night Ideas</div>
+                    <div class="sidebar-article-meta">1 day ago</div>
+                </div>
+            </div>
+
+            <!-- DFW Guides -->
+            <div class="sidebar-section">
+                <span class="location-tag">DFW Wide</span>
+                <h3>Regional Guides</h3>
+                <div class="sidebar-article">
+                    <div class="sidebar-article-title">Best BBQ Joints Across DFW</div>
+                    <div class="sidebar-article-meta">Guide</div>
+                </div>
+                <div class="sidebar-article">
+                    <div class="sidebar-article-title">Weekend Road Trips from Arlington</div>
+                    <div class="sidebar-article-meta">Guide</div>
+                </div>
+                <div class="sidebar-article">
+                    <div class="sidebar-article-title">DFW's Best Farmers Markets</div>
+                    <div class="sidebar-article-meta">Guide</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Arlington</h4>
+                <a href="#">Eat & Drink</a>
+                <a href="#">Things to Do</a>
+                <a href="#">Neighborhoods</a>
+                <a href="#">Local Buzz</a>
+            </div>
+            <div class="footer-section">
+                <h4>More Cities</h4>
+                <a href="#">Fort Worth</a>
+                <a href="#">Dallas</a>
+                <a href="#">DFW Guides</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Advertise</a>
+                <a href="#">Contact</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <a href="#">Instagram</a>
+                <a href="#">TikTok</a>
+                <a href="#">Twitter</a>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 DFWA Social Buzz. Arlington's Daily.
+        </div>
+    </footer>
+</body>
+</html>
