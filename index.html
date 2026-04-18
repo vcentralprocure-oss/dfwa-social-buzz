@@ -39,17 +39,14 @@
         }
         
         .logo {
-            display: flex;
-            align-items: center;
+            display: block;
+            height: 55px;
         }
 
         .logo img {
             height: 55px;
             width: auto;
-            max-width: 200px;
             display: block;
-            border-radius: 8px;
-            object-fit: contain;
         }
         
         .nav {
@@ -423,7 +420,7 @@
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <div class="logo"><a href="/"><img src="/logo.jpg" alt="DFWA Social Buzz Logo" width="180" height="55"></a></div>
+            <a href="/" class="logo"><img src="logo.jpg" alt="DFWA Social Buzz Logo"></a>
             <nav class="nav">
                 <a href="#" class="primary">Arlington</a>
                 <a href="#">Fort Worth</a>
