@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DFWA SOCIAL BUZZ — Arlington's Daily</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
     <style>
         * {
             margin: 0;
@@ -38,13 +39,15 @@
         }
         
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
         }
-        
-        .logo span {
-            color: #ff6b35;
+
+        .logo img {
+            height: 55px;
+            width: auto;
+            display: block;
+            border-radius: 8px;
         }
         
         .nav {
@@ -385,6 +388,10 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+
+            .logo img {
+                height: 45px;
+            }
             
             .nav {
                 flex-wrap: wrap;
@@ -414,7 +421,7 @@
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <div class="logo">DFWA <span>SOCIAL BUZZ</span></div>
+            <div class="logo"><img src="logo.jpg" alt="DFWA Social Buzz Logo"></div>
             <nav class="nav">
                 <a href="#" class="primary">Arlington</a>
                 <a href="#">Fort Worth</a>
